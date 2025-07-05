@@ -26,7 +26,7 @@ install_dependencies() {
     if [[ -f /etc/os-release ]]; then
         . /etc/os-release
         case "$ID" in
-            debian|ubuntu)
+            debian|ubuntu|kali)
                 installer="apt"
                 update_cmd="apt update"
                 install_cmd="apt install -y"
