@@ -2,7 +2,7 @@
 
 A cross-distro Bash script to monitor file changes in a directory (and its subdirectories), identify the user/process responsible, and send desktop notifications.
 
-🖥️ **Supports:** Debian/Ubuntu, Arch, Fedora, CentOS, openSUSE, and other Linux distributions.
+🖥️ **Supports:** Debian/Ubuntu, Arch, Fedora, CentOS, openSUSE, kali, and other Linux distributions.
 
 ---
 
