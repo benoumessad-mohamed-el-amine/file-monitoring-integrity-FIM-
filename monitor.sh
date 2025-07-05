@@ -161,13 +161,11 @@ fi
 # Set up audit rules for the monitored directory
 setup_audit_rules() {
     local watch_path="$1"
-    
-    # Remove existing rules for this path
-    auditctl -d -w "$watch_path" -p wa -k filewatch 2>/dev/null || true
-    
-    # Add new audit rule
+    # Remove any existing watch rule for this path and key
+    auditctl -W "$watch_path" -p wa -k filewatch 2>/dev/null || true
+    # Add the new rule
     auditctl -w "$watch_path" -p wa -k filewatch
-    log_message "INFO" "Audit rule added for: $watch_path"
+    log_message "INFO" "Audit rule refreshed for: $watch_path"
 }
 
 # Function to get detailed user information
@@ -374,4 +372,3 @@ while IFS='|' read -r TIMESTAMP EVENT FILEPATH; do
         remove_duplicate_files
     fi
 done
-
