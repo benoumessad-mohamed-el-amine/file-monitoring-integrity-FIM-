@@ -145,7 +145,7 @@ fi
 
 # Configuration
 HASH_FILE="$WATCH_DIR/.file_monitor_hashes.sha256"
-LOG_FILE="$WATCH_DIR/.file_monitor.log"
+LOG_FILE="$WATCH_DIR/file_monitor.log"
 AUDIT_LOG="/var/log/audit/audit.log"
 declare -A LAST_ALERT
 
@@ -251,6 +251,30 @@ remove_duplicate_files() {
 
 # Initialize monitoring
 initialize_monitoring() {
+    echo
+    echo -e "\e[1;32m========================================\e[0m"
+    echo -e "\e[1;34m   🛡️  File Integrity Monitor Started   \e[0m"
+    echo -e "\e[1;32m========================================\e[0m"
+    echo -e "\e[1;33mMonitoring directory: $WATCH_DIR\e[0m"
+    echo
+
+    # Ensure log file exists and set permissions (visible)
+    if [[ ! -f "$LOG_FILE" ]]; then
+        touch "$LOG_FILE"
+        chmod 600 "$LOG_FILE"
+        echo "# File Integrity Monitor Log" > "$LOG_FILE"
+        echo "# Started: $(date '+%Y-%m-%d %H:%M:%S')" >> "$LOG_FILE"
+        echo "# Directory: $WATCH_DIR" >> "$LOG_FILE"
+        echo >> "$LOG_FILE"
+    else
+        chmod 600 "$LOG_FILE"
+    fi
+
+    # Ensure hash file exists and set permissions (hidden)
+    if [[ -f "$HASH_FILE" ]]; then
+        chmod 600 "$HASH_FILE"
+    fi
+
     cd "$WATCH_DIR" || exit 1
     
     # Setup audit rules
