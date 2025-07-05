@@ -272,10 +272,16 @@ initialize_monitoring() {
 
 # Cleanup function
 cleanup() {
-    log_message "INFO" "Monitoring stopped"
-    # Remove audit rules
+    
+    echo
+    echo -e "\e[1;33m========================================\e[0m"
+    echo -e "\e[1;32m   🚦 File Integrity Monitor Stopped   \e[0m"
+    echo -e "\e[1;33m========================================\e[0m"
+    echo -e "\e[1;34mAll monitoring stopped and cleanup completed.\e[0m"
+    #removing audit rules
     auditctl -d -W "$WATCH_DIR" 2>/dev/null || true
-    echo -e "\n${YELLOW}Monitoring stopped. Cleanup completed.${NC}"
+    echo -e "\e[1;36mThank you for using fim-monitor! Stay secure. 🛡️\e[0m"
+    echo 
     exit 0
 }
 
