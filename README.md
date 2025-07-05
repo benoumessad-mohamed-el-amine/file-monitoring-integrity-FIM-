@@ -57,11 +57,6 @@ File monitoring active. Press Ctrl+C to stop.
 
 ---
 
-## 🖼️ Screenshots
-
-> _Add screenshots or terminal output here to showcase notifications and logs._
-
----
 
 ## ⚙️ How It Works
 - Uses `inotifywait` for real-time file event monitoring.
