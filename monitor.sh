@@ -163,7 +163,7 @@ setup_audit_rules() {
     local watch_path="$1"
     
     # Remove existing rules for this path
-    auditctl -W "$watch_path" 2>/dev/null || true
+    auditctl -d -w "$watch_path" -p wa -k filewatch 2>/dev/null || true
     
     # Add new audit rule
     auditctl -w "$watch_path" -p wa -k filewatch
